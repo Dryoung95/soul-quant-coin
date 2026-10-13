@@ -15,6 +15,8 @@ Soul Quant Coin（SQC）是一枚参考比特币发行规则设计的 ERC-20 测
 | 区块浏览器 | [查看合约](https://sepolia.etherscan.io/address/0x246296fCAa195069d69DbF04778600Dac31A0dB0) |
 | 预设 | `public-demo`，12 bits / 60 秒 |
 
+已在 Sepolia 实际完成挖矿与转账验证：挖出 50 SQC 后，向测试收款地址转入 1.23456789 SQC，发送方余额为 48.76543211 SQC，总供应仍为 50 SQC。可查看[实际转账交易](https://sepolia.etherscan.io/tx/0x2b0c24aca59e63b072162f7bfdb087afa9032c57f0a03d7b149fb09ff378b554)，验证记录保存在 `deployments/sepolia-smoke.json`；这些余额是该次验证结果，后续以链上状态为准。
+
 桌面浏览器安装 MetaMask 并连接 Sepolia，可以用自己的钱包挖矿、转账和接收 SQC。钱包需要少量 **Sepolia 测试 ETH** 支付交易 gas；SQC 本身不能支付 gas。
 
 普通手机浏览器可以查看公共页面及已部署合约状态；需要交易时，在 **MetaMask App 内置浏览器**中打开同一网址。当前页面依赖注入钱包，不提供普通手机浏览器的 WalletConnect 会话。

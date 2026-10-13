@@ -13,6 +13,8 @@
 | 预设 | `public-demo`，12 bits / 60 秒 |
 | 部署区块 | `11905329` |
 
+Sepolia 实际验证已完成：挖矿奖励 50 SQC，随后向 `0x12f1eEE3770adb7084b0E090e7495824281DF393` 转账 1.23456789 SQC；发送方剩余 48.76543211 SQC，总供应保持 50 SQC。[查看转账交易](https://sepolia.etherscan.io/tx/0x2b0c24aca59e63b072162f7bfdb087afa9032c57f0a03d7b149fb09ff378b554)。该次结果记录于 `deployments/sepolia-smoke.json`，当前余额以链上查询为准。
+
 ## 1. 准备部署钱包与测试 ETH
 
 使用独立测试钱包，在 Sepolia 网络通过 faucet 申请测试 ETH。faucet 可能要求登录、限制频次或暂时不可用，请以实际到账为准。测试 ETH 用于部署和交易 gas，不需要购买真实 ETH，也不能把本地 Hardhat ETH 转到 Sepolia。
