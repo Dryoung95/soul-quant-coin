@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#132c2b">
+  <title>Soul Quant Coin · 本地实验室</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="vendor/ethers.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M20 8V6a2 2 0 0 0-2-2H5a3 3 0 0 0 0 6h15v10H5a3 3 0 0 1-3-3V7m18 5h-6v5h6m-3-2.5h.01"/></symbol>
+    <symbol id="i-mine" viewBox="0 0 24 24"><path d="m3 21 12-12m-6-6c5-3 10 2 12 6l-2 2C15 7 10 4 6 6l3-3Zm5 7 3 3"/></symbol>
+    <symbol id="i-ledger" viewBox="0 0 24 24"><path d="M5 3h14v18H5zM9 7h6m-6 5h6m-6 5h3"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10h.01"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4H4v12h4"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5m-4-4a8 8 0 0 1 14-3l1 2M4 17l1 2a8 8 0 0 0 14-3"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/><path d="m8 12 3 3 5-5"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5L12 2Z"/></symbol>
+  </defs></svg>
+  <aside class="sidebar">
+    <a class="brand" href="#wallet" aria-label="Soul Quant Coin 首页"><span class="brand-mark">✳</span><span class="brand-name">Soul Quant<span class="brand-line">Coin</span><small>SQC · COIN LAB</small></span></a>
+    <div class="sidebar-label">你的链上实验空间</div>
+    <nav class="navigation" aria-label="主导航">
+      <a href="#wallet" data-page="wallet" class="nav-item active"><svg><use href="#i-wallet"/></svg>我的钱包<span class="nav-arrow">↗</span></a>
+      <a href="#mining" data-page="mining" class="nav-item"><svg><use href="#i-mine"/></svg>挖矿实验<span class="nav-arrow">↗</span></a>
+      <a href="#ledger" data-page="ledger" class="nav-item"><svg><use href="#i-ledger"/></svg>链上流水<span class="nav-arrow">↗</span></a>
+      <a href="#info" data-page="info" class="nav-item"><svg><use href="#i-info"/></svg>发行与机制<span class="nav-arrow">↗</span></a>
+    </nav>
+    <div class="sidebar-bottom"><span class="network-tag"><span class="status-dot"></span><span id="sidebar-network">本地测试网络</span></span><p>一枚从零开始的实验代币。<br>探索发行、挖矿与链上转账。</p><div class="sidebar-version">SQC 实验室 <span>01 / 2026</span></div></div>
+  </aside>
+  <main class="main">
+    <div class="topbar"><span class="breadcrumb"><span class="breadcrumb-brand">Soul Quant Coin</span> <span class="breadcrumb-divider">/</span> <span id="page-breadcrumb">我的钱包</span></span><div class="topbar-status"><span id="network-badge" class="network-badge" hidden>Sepolia 测试网</span><span class="connection-pill" id="connection-pill"><span class="status-dot"></span><span id="connection-text">正在连接本地链</span></span><button id="refresh-button" class="icon-button" aria-label="刷新链上状态" title="刷新链上状态"><svg><use href="#i-refresh"/></svg></button></div></div>
+    <div id="deployment-notice" class="deployment-notice" hidden><strong>Sepolia 部署准备中</strong><span>你可以连接个人钱包查看地址。合约部署完成后，这里将开放挖矿与转账。</span></div>
+    <div id="connection-error" class="error-banner" role="alert" hidden><span id="connection-error-text"></span><button id="retry-button" class="text-button">重新连接</button></div>
+    <section id="page-wallet" class="page" aria-labelledby="wallet-title">
+      <header class="page-header"><div><div class="eyebrow">你的第一枚链上资产</div><h1 id="wallet-title">我的钱包<span class="title-dot">.</span></h1><p id="wallet-intro">从一次挖矿开始，亲手体验代币的流动。</p></div><span id="wallet-mode-badge" class="outline-badge">本地测试 · 无市场价值</span></header>
+      <div class="test-notice"><svg><use href="#i-shield"/></svg><span id="wallet-notice">当前连接本机测试链。开发账户已解锁，仅用于实验；不要向这些账户转入真实资产。</span></div>
+      <div class="wallet-overview">
+        <article class="balance-card"><div class="card-topline"><span>可用 Soul Quant Coin</span><span class="coin-pill">SQC</span></div><div class="balance-number" id="balance-main">—<span> SQC</span></div><div class="balance-subtitle" id="balance-subtitle">连接账户后显示链上余额</div><div class="balance-footer"><span class="balance-emblem">✳</span><span>每一枚，始于一次有效计算。</span><a href="#mining">去挖矿 <svg><use href="#i-arrow"/></svg></a></div></article>
+        <article class="card account-card"><div class="card-heading"><h2>当前账户</h2><span id="account-type" class="soft-tag">开发账户</span></div><div id="account-source" class="segmented" aria-label="选择账户来源"><button id="use-dev" class="selected" type="button">本地开发账户</button><button id="connect-wallet" type="button">连接钱包</button></div><label class="field-label" for="account-select" id="account-label">选择一个测试账户</label><select id="account-select" aria-label="选择测试账户"><option>正在读取账户…</option></select><div class="address-box"><code id="active-address">尚未连接</code><button id="copy-address" class="icon-button" title="复制账户地址" aria-label="复制账户地址" disabled><svg><use href="#i-copy"/></svg></button></div><div class="account-meta"><span>测试 ETH（手续费）</span><strong id="native-balance">—</strong></div><div id="faucet-section" class="faucet-section" hidden><span>挖矿与转账需少量 Sepolia ETH 支付手续费。</span><a id="faucet-link" target="_blank" rel="noopener noreferrer">领取测试 ETH ↗</a></div><div id="wallet-message" class="inline-message" hidden></div><div id="wallet-tools" class="wallet-tools"><button id="switch-chain" class="text-button" type="button">添加 / 切换本地链 ↗</button><button id="watch-token" class="text-button" type="button">导入 SQC ↗</button></div></article>
+      </div>
+      <div class="wallet-details">
+        <article class="card transfer-card"><div class="card-heading"><h2>发送 Soul Quant Coin</h2><span class="step-label">链上转账</span></div><form id="transfer-form" novalidate><label class="field-label" for="recipient">收款地址</label><input id="recipient" name="recipient" placeholder="0x 开头的完整钱包地址" autocomplete="off" spellcheck="false" required><div class="label-row"><label class="field-label" for="amount">发送数量</label><button id="max-amount" type="button" class="text-button">全部余额</button></div><div class="amount-field"><input id="amount" name="amount" placeholder="0.00" inputmode="decimal" autocomplete="off" required><span>SQC</span></div><p id="transfer-hint" class="field-hint">支持最多 8 位小数，手续费使用本地测试 ETH。</p><div id="transfer-feedback" class="form-feedback" role="status" hidden></div><button class="primary-button send-button" id="send-button" type="submit" disabled><span>发送 SQC</span><svg><use href="#i-arrow"/></svg></button></form></article>
+        <article class="card supply-card"><div class="card-heading"><h2>从零，到 2,100 万</h2><svg class="small-icon muted"><use href="#i-spark"/></svg></div><p class="card-description">固定发行上限，随成功挖矿逐步释放。</p><div class="supply-amount"><strong id="supply-wallet">—</strong><span>SQC 已发行</span></div><div class="supply-track"><span id="supply-progress"></span></div><div class="supply-track-label"><span id="supply-percent">0% 已发行</span><span>上限 21,000,000</span></div><div class="mini-stats"><div><span>当前挖矿奖励</span><strong><span id="reward-wallet">—</span> <small>SQC</small></strong></div><div><span>成功挖矿次数</span><strong id="round-wallet">—</strong></div></div><a class="card-bottom-link" href="#info">了解发行与减半机制 <svg><use href="#i-arrow"/></svg></a></article>
+      </div>
+      <article class="card recent-card"><div class="card-heading"><h2>最近的链上活动</h2><a class="text-link" href="#ledger">查看全部 ↗</a></div><div id="recent-events" class="event-list"><div class="empty-state">正在读取链上活动…</div></div></article>
+    </section>
+    <section id="page-mining" class="page" aria-labelledby="mining-title" hidden>
+      <header class="page-header"><div><div class="eyebrow">把计算变成你的第一枚币</div><h1 id="mining-title">挖矿实验<span class="title-dot">.</span></h1><p>浏览器寻找有效哈希，成功后由合约发放奖励。</p></div><span id="mining-network-badge" class="outline-badge">CPU 演示 · 本地测试</span></header>
+      <div class="mining-grid"><article class="card mining-control"><div class="card-heading"><h2>开启一次探索</h2><span id="mining-status" class="soft-tag">待开始</span></div><div class="mining-orbit" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="mining-coin">✳</div><span class="orbit-node"></span></div><div class="mining-reward"><span>本轮成功奖励</span><strong><span id="reward-mining">—</span> <small>SQC</small></strong></div><p class="mining-help" id="mining-help">使用当前账户进行计算。成功后需要提交一笔测试链交易。</p><div class="mining-buttons"><button id="start-mining" class="primary-button" disabled><svg><use href="#i-mine"/></svg><span>开始挖矿</span></button><button id="stop-mining" class="secondary-button" disabled>停止</button></div><div id="mining-feedback" class="form-feedback" role="status" hidden></div><div class="mining-address">奖励接收账户 <code id="mining-account">尚未连接</code></div></article>
+        <div class="mining-right"><article class="card mining-network"><div class="card-heading"><h2>当前发行进度</h2><span class="step-label">全网共享轮次</span></div><div class="metric-grid"><div><span>当前轮次</span><strong id="round-mining">—</strong></div><div><span>下次可提交</span><strong id="next-mining">—</strong></div><div><span>当前奖励</span><strong><span id="reward-metric">—</span> <small>SQC</small></strong></div><div><span>距离奖励减半</span><strong id="halving-countdown">—</strong><small>次成功挖矿</small></div></div><div class="subtle-note">每次成功后，所有账户共享的挑战与轮次更新。若他人先提交，你需要重新计算。</div></article><article class="card computation-card"><div class="card-heading"><h2>计算过程</h2><span class="live-indicator" id="compute-live">等待启动</span></div><div class="hash-counter"><strong id="hash-count">0</strong><span>次哈希尝试</span></div><div class="computation-stats"><div><span>计算速率</span><strong id="hash-rate">0 H/s</strong></div><div><span>耗时</span><strong id="hash-elapsed">0.0 秒</strong></div><div><span>当前 nonce</span><strong id="hash-nonce">—</strong></div></div><div class="digest-label">最近一次哈希</div><code id="hash-digest" class="hash-digest">等待计算…</code></article></div></div>
+      <div class="test-notice"><svg><use href="#i-info"/></svg><span>这里的工作量证明只决定 SQC 奖励；交易与账本共识由底层 Ethereum 测试链负责。计算仅在当前浏览器运行。</span></div>
+    </section>
+    <section id="page-ledger" class="page" aria-labelledby="ledger-title" hidden>
+      <header class="page-header"><div><div class="eyebrow">每一次流动，都留下记录</div><h1 id="ledger-title">链上流水<span class="title-dot">.</span></h1><p>查看当前实例的铸币与转账记录。</p></div><span class="outline-badge" id="ledger-count">0 条记录</span></header>
+      <article class="card ledger-card"><div class="card-heading"><h2>最近交易</h2><label class="filter-label"><input id="my-events" type="checkbox">只看当前账户</label></div><div class="table-scroll"><table><thead><tr><th>类型</th><th>发送账户</th><th>接收账户</th><th>数量 / SQC</th><th>区块</th><th>交易</th></tr></thead><tbody id="ledger-events"><tr><td colspan="6" class="empty-state">正在读取链上流水…</td></tr></tbody></table></div><div id="ledger-footnote" class="ledger-footnote">显示最近 5,000 个区块内最多 80 条 Transfer 记录。点击地址或交易哈希可复制完整内容。</div></article>
+    </section>
+    <section id="page-info" class="page" aria-labelledby="info-title" hidden>
+      <header class="page-header"><div><div class="eyebrow">规则写进代码，也写在这里</div><h1 id="info-title">发行与机制<span class="title-dot">.</span></h1><p>参考比特币的有限发行，建立你自己的代币实验。</p></div><span class="outline-badge">透明 · 可验证</span></header>
+      <article class="card mechanism-intro"><div><span class="soft-tag">Soul Quant Coin</span><h2>固定上限。周期减半。<br>从零开始发行。</h2><p id="mechanism-description">SQC 是部署在 Ethereum 测试链上的 ERC-20 代币。合约没有 owner 权限、额外增发入口或交易税；所有发行来自满足规则的挖矿申领。</p></div><div class="cap-display"><span>发行上限</span><strong>21,000,000</strong><span>SQC · 8 位小数</span></div></article>
+      <div class="info-grid"><article class="card halving-card"><div class="card-heading"><h2>每 210,000 次，奖励减半</h2></div><p class="card-description">初始奖励 50 SQC。以下按成功挖矿次数展示，不按区块高度计算。</p><div class="halving-chart" role="img" aria-label="前四个周期的单次奖励依次为 50、25、12.5 和 6.25 SQC"><div class="chart-column"><span>50</span><div style="--bar:100%"></div><small>第 1 周期</small></div><div class="chart-column"><span>25</span><div style="--bar:50%"></div><small>第 2 周期</small></div><div class="chart-column"><span>12.5</span><div style="--bar:25%"></div><small>第 3 周期</small></div><div class="chart-column"><span>6.25</span><div style="--bar:12.5%"></div><small>第 4 周期</small></div></div><p class="subtle-note">8 位小数采用整数舍入，实际可挖总量为 20,999,999.9769 SQC。当前实例创世发行量为零。</p></article><article class="card comparison-card"><div class="card-heading"><h2>与比特币的关系</h2></div><ul class="mechanism-list"><li><span class="list-mark">01</span><div><strong>借鉴发行节奏</strong><p>2,100 万上限、50 初始奖励、210,000 次减半，支持 8 位小数。</p></div></li><li><span class="list-mark">02</span><div><strong>账户与共识属于 Ethereum</strong><p>SQC 使用 ERC-20 与 Ethereum 账户，不具备比特币独立链、UTXO 或网络安全性。</p></div></li><li><span class="list-mark">03</span><div><strong id="environment-heading">本机的演示环境</strong><p id="environment-info">开发节点及其账户由本机管理。代币没有市场价值，本地节点重置后部署与余额可能变化。</p></div></li></ul></article></div>
+      <article class="card lab-config"><div class="card-heading"><h2>实验室信息</h2><span class="step-label" id="profile-name">本地快速测试</span></div><dl class="config-grid"><div><dt>网络 / Chain ID</dt><dd id="config-chain">Ethereum 本地链 · 31337</dd></div><div><dt>RPC 地址</dt><dd id="config-rpc">http://127.0.0.1:8545</dd></div><div><dt>成功申领最短间隔</dt><dd id="config-interval">—</dd></div><div><dt>挖矿难度</dt><dd id="config-difficulty">—</dd></div><div class="config-wide"><dt>代币合约地址</dt><dd><code id="contract-address">正在读取…</code><button id="copy-contract" class="icon-button" aria-label="复制合约地址" title="复制合约地址" disabled><svg><use href="#i-copy"/></svg></button></dd></div></dl><p id="profile-note" class="subtle-note">正式节奏测试预设为 600 秒 / 24 bits，仅用于测试。它不代表主网已部署、代币已具备市场价值或已完成外部安全审计。</p></article>
+    </section>
+    <footer class="footer"><span>✳ Soul Quant Coin 实验室</span><span id="last-update">状态尚未同步</span><span id="footer-network">本地链 · 学习与实验</span></footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

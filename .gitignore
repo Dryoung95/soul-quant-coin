@@ -1,0 +1,10 @@
+node_modules/
+.npm-cache/
+artifacts/
+runtime/
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.log

@@ -1,0 +1,22 @@
+{
+  "name": "soul-quant-coin-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Soul Quant Coin SQC：参考比特币发行规则的本地 ERC-20 测试实验室",
+  "scripts": {
+    "compile": "node scripts/compile.mjs",
+    "test": "node --test --test-concurrency=1 tests/*.test.mjs",
+    "start": "node scripts/start.mjs",
+    "deploy:testnet": "node scripts/deploy-testnet.mjs",
+    "export:public": "node scripts/export-public.mjs",
+    "preview:public": "node scripts/preview-public.mjs"
+  },
+  "engines": { "node": ">=22.10.0" },
+  "dependencies": {
+    "@openzeppelin/contracts": "5.6.1",
+    "ethers": "6.17.0",
+    "hardhat": "3.19.0",
+    "solc": "0.8.37"
+  }
+}
