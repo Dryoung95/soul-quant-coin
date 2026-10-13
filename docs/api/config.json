@@ -1,11 +1,11 @@
 {
   "publicTestnet": true,
-  "deploymentPending": true,
+  "deploymentPending": false,
   "chainId": 11155111,
   "networkName": "Sepolia",
   "name": "Soul Quant Coin",
   "symbol": "SQC",
-  "address": null,
+  "address": "0x246296fCAa195069d69DbF04778600Dac31A0dB0",
   "abi": [
     {
       "inputs": [
@@ -582,10 +582,10 @@
   "profile": "public-demo",
   "miningInterval": 60,
   "difficultyBits": 12,
-  "deploymentBlock": null,
-  "deployedAt": null,
+  "deploymentBlock": 11905329,
+  "deployedAt": "2026-10-13T09:59:03.266Z",
   "deployerAddress": "0xFD46DCbb7F3FA990B128d780066EA18Bf261a749",
   "faucetUrl": "https://cloud.google.com/application/web3/faucet/ethereum/sepolia",
   "explorerUrl": "https://sepolia.etherscan.io",
-  "exportedAt": "2026-10-13T09:44:18.202Z"
+  "exportedAt": "2026-10-13T09:59:04.335Z"
 }

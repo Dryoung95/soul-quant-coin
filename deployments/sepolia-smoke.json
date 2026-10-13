@@ -1,0 +1,15 @@
+{
+  "chainId": 11155111,
+  "contract": "0x246296fCAa195069d69DbF04778600Dac31A0dB0",
+  "name": "Soul Quant Coin",
+  "symbol": "SQC",
+  "sender": "0xFD46DCbb7F3FA990B128d780066EA18Bf261a749",
+  "recipient": "0x12f1eEE3770adb7084b0E090e7495824281DF393",
+  "amount": "1.23456789",
+  "senderBalance": "48.76543211",
+  "recipientBalance": "1.23456789",
+  "totalSupply": "50.0",
+  "miningTransaction": "0x91b561d6f04e31deead5667c189afa9091ab3e18fd04d0c4b0a6eb8f1ed60a80",
+  "transferTransaction": "0x2b0c24aca59e63b072162f7bfdb087afa9032c57f0a03d7b149fb09ff378b554",
+  "verifiedAt": "2026-10-13T10:03:07.298Z"
+}

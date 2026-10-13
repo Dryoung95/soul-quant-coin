@@ -2,13 +2,22 @@
 
 本流程把钱包网页发布到 GitHub Pages，把 SQC 合约部署到 Sepolia。网页发布不等于合约已经部署：尚未获得测试 ETH 或尚未完成部署时，可以先发布“准备中”的页面；该页面不能挖矿或转账。
 
-仓库 [Dryoung95/soul-quant-coin](https://github.com/Dryoung95/soul-quant-coin) 已创建，Pages 目标网址为 <https://dryoung95.github.io/soul-quant-coin/>。仓库存在不代表 Pages 已发布；本文不声称 Sepolia 合约已经部署。
+仓库 [Dryoung95/soul-quant-coin](https://github.com/Dryoung95/soul-quant-coin) 与公共网页 <https://dryoung95.github.io/soul-quant-coin/> 已上线，Sepolia 合约已成功部署，对应公共配置已导出。连接自己的 MetaMask 钱包后可提交挖矿和转账交易。
+
+| 当前实例 | 值 |
+|---|---|
+| 合约 | `0x246296fCAa195069d69DbF04778600Dac31A0dB0` |
+| 浏览器 | [查看合约](https://sepolia.etherscan.io/address/0x246296fCAa195069d69DbF04778600Dac31A0dB0) |
+| 部署交易 | [查看部署交易](https://sepolia.etherscan.io/tx/0xe8b4de072495cb83c88471e165afe253fac34b64996101a0d5fe0ee719733f54) |
+| 网络 / 链 ID | Sepolia / `11155111` |
+| 预设 | `public-demo`，12 bits / 60 秒 |
+| 部署区块 | `11905329` |
 
 ## 1. 准备部署钱包与测试 ETH
 
 使用独立测试钱包，在 Sepolia 网络通过 faucet 申请测试 ETH。faucet 可能要求登录、限制频次或暂时不可用，请以实际到账为准。测试 ETH 用于部署和交易 gas，不需要购买真实 ETH，也不能把本地 Hardhat ETH 转到 Sepolia。
 
-本机已经为独立部署钱包创建密钥文件 `C:\Users\Lenovo\.sqc-secrets\sepolia-deployer.key`，文件位于项目之外。部署钱包公开地址为 **`0xFD46DCbb7F3FA990B128d780066EA18Bf261a749`**；当前尚无 Sepolia 测试 ETH，需先从 faucet 为这个地址补足测试 gas。该状态以实际链上余额为准。
+本机已经为独立部署钱包创建密钥文件 `C:\Users\Lenovo\.sqc-secrets\sepolia-deployer.key`，文件位于项目之外。部署钱包公开地址为 **`0xFD46DCbb7F3FA990B128d780066EA18Bf261a749`**；已确认收到 0.05 个 Sepolia 测试 ETH。部署及后续交易会消耗测试 gas，当前余额以链上查询为准。
 
 私钥不进入 GitHub，不要把私钥贴到聊天或网页，也不要把密钥文件放进 `docs/` 或版本库。公共配置只包含网络、合约地址、ABI 等公开参数；其他用户交互时由浏览器中各自的个人钱包签名，不使用这个部署私钥。
 
@@ -69,7 +78,7 @@ npm.cmd run preview:public
 
 ## 5. 使用公共钱包
 
-部署完成并发布对应配置后，桌面浏览器使用 MetaMask，手机使用 **MetaMask App 内置浏览器**访问公共网址。普通手机浏览器可以查看页面及链上状态；当前实现需要注入钱包才能交易。
+桌面浏览器使用 MetaMask，手机使用 **MetaMask App 内置浏览器**访问公共网址。普通手机浏览器可以查看页面及链上状态；当前实现需要注入钱包才能交易。
 
 连接自己的钱包并切换 Sepolia，领取少量 faucet 测试 ETH 支付 gas。挖矿先在浏览器计算解，再由 MetaMask 确认提交；转账同样需要钱包确认。收款者不需要给网页提供私钥。
 
@@ -79,7 +88,7 @@ npm.cmd run preview:public
 | 链 ID | `11155111` |
 | 公共 RPC | `https://ethereum-sepolia-rpc.publicnode.com` |
 | gas 货币 | Sepolia ETH |
-| SQC 合约 | 以当前公共页和成功部署记录为准 |
+| SQC 合约 | `0x246296fCAa195069d69DbF04778600Dac31A0dB0` |
 | 代币符号 / 精度 | `SQC` / `8` |
 | 区块浏览器 | `https://sepolia.etherscan.io` |
 

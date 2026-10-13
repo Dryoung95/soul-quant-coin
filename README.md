@@ -6,9 +6,16 @@ Soul Quant Coin（SQC）是一枚参考比特币发行规则设计的 ERC-20 测
 
 ## 公共测试网钱包
 
-仓库 [Dryoung95/soul-quant-coin](https://github.com/Dryoung95/soul-quant-coin) 已创建，GitHub Pages 目标地址为 <https://dryoung95.github.io/soul-quant-coin/>。发布步骤见 [PUBLIC_DEPLOYMENT.md](PUBLIC_DEPLOYMENT.md)；仓库存在不代表 Pages 或 Sepolia 合约已经上线。当前部署钱包尚无 Sepolia 测试 ETH，合约部署待完成。
+仓库 [Dryoung95/soul-quant-coin](https://github.com/Dryoung95/soul-quant-coin) 和公共网页 <https://dryoung95.github.io/soul-quant-coin/> 已上线，Soul Quant Coin 已部署到 Sepolia。公共网页配置已导出，可使用 MetaMask 连接自己的钱包；使用与发布步骤见 [PUBLIC_DEPLOYMENT.md](PUBLIC_DEPLOYMENT.md)。
 
-部署完成后，桌面浏览器安装 MetaMask 并连接 Sepolia，可以用自己的钱包挖矿、转账和接收 SQC。钱包需要少量 **Sepolia 测试 ETH** 支付交易 gas；SQC 本身不能支付 gas。
+| 当前公共实例 | 值 |
+|---|---|
+| 网络 / 链 ID | Sepolia / `11155111` |
+| 合约 | `0x246296fCAa195069d69DbF04778600Dac31A0dB0` |
+| 区块浏览器 | [查看合约](https://sepolia.etherscan.io/address/0x246296fCAa195069d69DbF04778600Dac31A0dB0) |
+| 预设 | `public-demo`，12 bits / 60 秒 |
+
+桌面浏览器安装 MetaMask 并连接 Sepolia，可以用自己的钱包挖矿、转账和接收 SQC。钱包需要少量 **Sepolia 测试 ETH** 支付交易 gas；SQC 本身不能支付 gas。
 
 普通手机浏览器可以查看公共页面及已部署合约状态；需要交易时，在 **MetaMask App 内置浏览器**中打开同一网址。当前页面依赖注入钱包，不提供普通手机浏览器的 WalletConnect 会话。
 

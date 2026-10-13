@@ -106,7 +106,7 @@ Sepolia 部署与本地实验室是不同实例，不共享余额和历史。本
 
 部署记录包含网络、链 ID、合约地址、部署交易哈希、部署者地址、难度、间隔、预设名、部署区块、ABI 和部署时间。记录不包含私钥，可以作为公共网页导出输入；本地 `runtime/config.json` 不会因为 Sepolia 部署自动变成公共测试网前端配置。部署脚本生成记录后自动执行公共导出；导出失败不撤销已经确认的部署交易，重试前需要区分链上部署和网页导出各自的结果。
 
-公共站点的发布目标为仓库 `Dryoung95/soul-quant-coin`，GitHub Pages source 使用 `main` 分支的 `/docs` 文件夹。网页发布可以先完成；如果部署钱包还没有 faucet 测试 ETH，合约部署仍然待完成，公共页面应保持准备中。部署成功后重新导出并发布配置，链上余额及交易由 Sepolia 保存，不会因为重启本地实验室被清空。
+公共站点已发布到 <https://dryoung95.github.io/soul-quant-coin/>，源码仓库为 `Dryoung95/soul-quant-coin`，GitHub Pages source 使用 `main` 分支的 `/docs` 文件夹。当前 Sepolia 合约已部署，地址为 `0x246296fCAa195069d69DbF04778600Dac31A0dB0`，采用 `public-demo`（12 bits / 60 秒），部署区块为 `11905329`，对应公共网页配置已经导出。可在 [Sepolia Etherscan](https://sepolia.etherscan.io/address/0x246296fCAa195069d69DbF04778600Dac31A0dB0) 查看该实例。链上余额及交易由 Sepolia 保存，不会因为重启本地实验室被清空。
 
 本说明描述部署流程，不证明公共测试网已有实例。合约地址、网络及部署交易以成功执行后的部署文件为准。更慢的测试预设和公共测试网部署都不构成主网上线评估。
 
